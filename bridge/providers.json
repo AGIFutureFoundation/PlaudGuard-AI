@@ -1,0 +1,28 @@
+{
+ "crusoe": {
+  "base_url": "https://api.inference.crusoecloud.com/v1",
+  "key_env": "CRUSOE_API_KEY",
+  "model": "zai-org/GLM-5.3",
+  "class": "openai_compat"
+ },
+ "openrouter": {
+  "base_url": "https://openrouter.ai/api/v1",
+  "key_env": "OPENROUTER_API_KEY",
+  "model": "z-ai/glm-5.3",
+  "class": "openai_compat",
+  "pin": "crusoe"
+ },
+ "nebius": {
+  "base_url": "https://api.studio.nebius.com/v1",
+  "key_env": "NEBIUS_API_KEY",
+  "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+  "class": "openai_compat"
+ },
+ "openrouter-nebius": {
+  "base_url": "https://openrouter.ai/api/v1",
+  "key_env": "OPENROUTER_API_KEY",
+  "model": "qwen/qwen3-235b-a22b-2507",
+  "class": "openai_compat",
+  "pin": "nebius"
+ }
+}
