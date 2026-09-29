@@ -23,7 +23,14 @@ def load_env():
             if "=" in line and not line.lstrip().startswith("#"):
                 k, v = line.split("=", 1); os.environ.setdefault(k.strip(), v.strip().strip('"'))
 
-def key_for(p): return os.environ.get(PROVIDERS[p]["key_env"])
+def key_for(p):
+    """exact env name first, then any env var whose name carries the provider name (CRUSOE_KEY, NEBIUS_TOKEN, ...)."""
+    v = os.environ.get(PROVIDERS[p]["key_env"])
+    if v: return v
+    tag = p.split("-")[0].upper()
+    for k, val in os.environ.items():
+        if tag in k.upper() and any(t in k.upper() for t in ("KEY", "TOKEN", "SECRET")) and val: return val
+    return None
 
 def translate(p, h, prompt):
     """return (description, runnable) where runnable is a callable or None (harness cannot take this provider)."""
